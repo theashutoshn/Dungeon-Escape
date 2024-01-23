@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private LayerMask _groundLayer;
     private bool _resetJump = false;
+    [SerializeField]
+    private float _playerSpeed = 2.5f;
 
     void Start()
     {
@@ -22,16 +24,13 @@ public class Player : MonoBehaviour
     {
         Movement();
         CheckGround();
-        
-        
 
-        
 
     }
 
    void Movement()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
 
         if (Input.GetKeyDown(KeyCode.Space) && _grounded == true)
         {
@@ -41,18 +40,18 @@ public class Player : MonoBehaviour
             StartCoroutine(ResetJumpRoutine());
         }
 
-        _rb2d.velocity = new Vector2(horizontalInput, _rb2d.velocity.y);
+        _rb2d.velocity = new Vector2(horizontalInput * _playerSpeed, _rb2d.velocity.y);
     }
 
     void CheckGround()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1f, _groundLayer.value);
 
-        Debug.DrawRay(transform.position, Vector2.down * 1f, Color.green);
+        // Debug.DrawRay(transform.position, Vector2.down * 1f, Color.green);
 
         if (hit.collider != null)
         {
-            Debug.Log("Hit: " + hit.collider.name);
+            // Debug.Log("Hit: " + hit.collider.name);
 
             if (_resetJump == false)
             {
