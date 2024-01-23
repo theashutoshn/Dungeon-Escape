@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     private bool _grounded = false;
     [SerializeField]
     private LayerMask _groundLayer;
+    private bool _resetJump = false;
 
     void Start()
     {
@@ -19,28 +20,52 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Movement();
+        CheckGround();
+        
+        
+
+        
+
+    }
+
+   void Movement()
+    {
         float horizontalInput = Input.GetAxis("Horizontal");
 
-        if(Input.GetKeyDown(KeyCode.Space) && _grounded == true)
+        if (Input.GetKeyDown(KeyCode.Space) && _grounded == true)
         {
             _rb2d.velocity = new Vector2(_rb2d.velocity.x, _jumpForce);
             _grounded = false;
+            _resetJump = true;
+            StartCoroutine(ResetJumpRoutine());
         }
 
-        
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.8f, _groundLayer.value);
+        _rb2d.velocity = new Vector2(horizontalInput, _rb2d.velocity.y);
+    }
 
-        Debug.DrawRay(transform.position, Vector2.down * 0.8f, Color.green);
+    void CheckGround()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1f, _groundLayer.value);
+
+        Debug.DrawRay(transform.position, Vector2.down * 1f, Color.green);
 
         if (hit.collider != null)
         {
             Debug.Log("Hit: " + hit.collider.name);
-            _grounded = true;
+
+            if (_resetJump == false)
+            {
+                _grounded = true;
+            }
+
         }
-
-
-
-        _rb2d.velocity = new Vector2(horizontalInput, _rb2d.velocity.y);
-
     }
+
+    IEnumerator ResetJumpRoutine()
+    {
+        yield return new WaitForSeconds(0.1f);
+        _resetJump = false;
+    }
+
 }
