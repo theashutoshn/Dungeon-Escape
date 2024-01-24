@@ -14,11 +14,13 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _playerSpeed = 2.5f;
     private PlayerAnimation _playerAnim;
+    private SpriteRenderer _playerSprite;
 
     void Start()
     {
         _rb2d = GetComponent<Rigidbody2D>();
         _playerAnim = GetComponent<PlayerAnimation>();
+        _playerSprite = GetComponentInChildren<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -33,6 +35,8 @@ public class Player : MonoBehaviour
    void Movement()
     {
         float horizontalInput = Input.GetAxisRaw("Horizontal");
+
+        Flip(horizontalInput);
 
         if (Input.GetKeyDown(KeyCode.Space) && _grounded == true)
         {
@@ -62,6 +66,23 @@ public class Player : MonoBehaviour
                 _grounded = true;
             }
 
+        }
+    }
+
+    void Flip(float horizontalInput)
+    {
+        //if(horizontalInput > 0)
+        // faceright true
+        //if(horizontalInput < 0)
+        // faceright false
+
+        if(horizontalInput > 0)
+        {
+            _playerSprite.flipX = false;
+        }
+        else if (horizontalInput < 0)
+        {
+            _playerSprite.flipX = true;
         }
     }
 
