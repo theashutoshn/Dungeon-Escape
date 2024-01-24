@@ -13,10 +13,12 @@ public class Player : MonoBehaviour
     private bool _resetJump = false;
     [SerializeField]
     private float _playerSpeed = 2.5f;
+    private PlayerAnimation _playerAnim;
 
     void Start()
     {
         _rb2d = GetComponent<Rigidbody2D>();
+        _playerAnim = GetComponent<PlayerAnimation>();
     }
 
     // Update is called once per frame
@@ -41,6 +43,8 @@ public class Player : MonoBehaviour
         }
 
         _rb2d.velocity = new Vector2(horizontalInput * _playerSpeed, _rb2d.velocity.y);
+
+        _playerAnim.Move(horizontalInput);
     }
 
     void CheckGround()
