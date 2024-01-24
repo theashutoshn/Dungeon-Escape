@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
     {
         Movement();
         CheckGround();
-
+        Attack();
 
     }
 
@@ -56,11 +56,11 @@ public class Player : MonoBehaviour
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1f, _groundLayer.value);
 
-        // Debug.DrawRay(transform.position, Vector2.down * 1f, Color.green);
+        Debug.DrawRay(transform.position, Vector2.down * 1f, Color.green);
 
         if (hit.collider != null)
         {
-            // Debug.Log("Hit: " + hit.collider.name);
+            Debug.Log("Hit: " + hit.collider.name);
 
             if (_resetJump == false)
             {
@@ -94,4 +94,11 @@ public class Player : MonoBehaviour
         _resetJump = false;
     }
 
+    void Attack()
+    {
+        if (Input.GetMouseButtonDown(0) && _grounded == true)
+        {
+            _playerAnim.PlayerAttack();
+        }
+    }
 }

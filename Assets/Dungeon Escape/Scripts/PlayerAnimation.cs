@@ -32,5 +32,10 @@ public class PlayerAnimation : MonoBehaviour
             _anim.SetBool("Jump", false);
         }
     }
+
+    public void PlayerAttack()
+    {
+        _anim.SetTrigger("Attack");
+    }
 }
 
