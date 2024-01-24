@@ -44,6 +44,7 @@ public class Player : MonoBehaviour
             _grounded = false;
             _resetJump = true;
             StartCoroutine(ResetJumpRoutine());
+            _playerAnim.Jumping(true);
         }
 
         _rb2d.velocity = new Vector2(horizontalInput * _playerSpeed, _rb2d.velocity.y);
@@ -63,6 +64,7 @@ public class Player : MonoBehaviour
 
             if (_resetJump == false)
             {
+                _playerAnim.Jumping(false);
                 _grounded = true;
             }
 
