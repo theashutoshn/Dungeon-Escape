@@ -5,9 +5,11 @@ using UnityEngine;
 public class PlayerAnimation : MonoBehaviour
 {
     private Animator _anim;
+    private Animator _swordAnim;
     void Start()
     {
         _anim = GetComponentInChildren<Animator>();
+        _swordAnim = transform.GetChild(1).GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -36,6 +38,7 @@ public class PlayerAnimation : MonoBehaviour
     public void PlayerAttack()
     {
         _anim.SetTrigger("Attack");
+        _swordAnim.SetTrigger("SwordArc");
     }
 }
 

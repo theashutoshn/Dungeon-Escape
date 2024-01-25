@@ -15,12 +15,14 @@ public class Player : MonoBehaviour
     private float _playerSpeed = 2.5f;
     private PlayerAnimation _playerAnim;
     private SpriteRenderer _playerSprite;
+    private SpriteRenderer _swordAnimSprite;
 
     void Start()
     {
         _rb2d = GetComponent<Rigidbody2D>();
         _playerAnim = GetComponent<PlayerAnimation>();
         _playerSprite = GetComponentInChildren<SpriteRenderer>();
+        _swordAnimSprite = transform.GetChild(1).GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -81,10 +83,23 @@ public class Player : MonoBehaviour
         if(horizontalInput > 0)
         {
             _playerSprite.flipX = false;
+            _swordAnimSprite.flipY = false;
+
+            // Need to understand this more ///
+            /* Vector3 newPos = _swordAnimSprite.transform.localPosition;
+            newPos.x = 1.01f;
+            _swordAnimSprite.transform.localPosition = newPos;
+            */
         }
         else if (horizontalInput < 0)
         {
             _playerSprite.flipX = true;
+            _swordAnimSprite.flipY = true;
+
+           /* Vector3 newPos = _swordAnimSprite.transform.localPosition;
+            newPos.x = -1.01f;
+            _swordAnimSprite.transform.localPosition = newPos;
+           */
         }
     }
 
@@ -99,6 +114,7 @@ public class Player : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && _grounded == true)
         {
             _playerAnim.PlayerAttack();
+
         }
     }
 }
