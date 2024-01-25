@@ -19,23 +19,37 @@ public class MossGiant : Enemy
     {
         if(_mossAnim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
-            Debug.Log("Idle ANiamtion Stop");
             return;
         }
+
+        
+
         Movement();
     }
 
     void Movement()
     {
+
+        //flipping of sprite
+        if (_currentTarget == PointA.position)
+        {
+            _mossSprite.flipX = true;
+        }
+        else if (_currentTarget == PointB.position)
+        {
+            _mossSprite.flipX = false;
+        }
+
+        //movement of sprite
         if (transform.position == PointA.position)
         {
             _currentTarget = PointB.position;
-            _mossSprite.flipX = false;
+            _mossAnim.SetTrigger("Idle");         
         }
         else if (transform.position == PointB.position)
         {
             _currentTarget = PointA.position;
-            _mossSprite.flipX = true;
+            _mossAnim.SetTrigger("Idle");
         }
 
         transform.position = Vector3.MoveTowards(transform.position, _currentTarget, speed * Time.deltaTime);
