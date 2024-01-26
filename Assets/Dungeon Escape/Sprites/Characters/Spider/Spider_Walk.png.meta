@@ -879,6 +879,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Spider_Walk_31
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5771ba32f9b6ccb4e9d0279dcdfd5d50
+      internalID: -275536844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -915,6 +936,7 @@ TextureImporter:
       Spider_Walk_29: 21300058
       Spider_Walk_3: 21300006
       Spider_Walk_30: 21300060
+      Spider_Walk_31: -275536844
       Spider_Walk_4: 21300008
       Spider_Walk_5: 21300010
       Spider_Walk_6: 21300012
