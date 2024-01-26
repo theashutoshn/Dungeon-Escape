@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MossGiant : Enemy
 {
-    private bool _switch = false;
+    
     private Vector3 _currentTarget;
     private SpriteRenderer _mossSprite;
     private Animator _mossAnim;
@@ -17,7 +17,8 @@ public class MossGiant : Enemy
 
     public override void Update()
     {
-        if(_mossAnim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        // this is not working, need to solve the error
+        if (_mossAnim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
             return;
         }
