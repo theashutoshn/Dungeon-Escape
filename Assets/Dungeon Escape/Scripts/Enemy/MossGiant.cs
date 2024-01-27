@@ -2,17 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MossGiant : Enemy
+public class MossGiant : Enemy, IDamageable
 {
     
     private Vector3 _currentTarget;
     private SpriteRenderer _mossSprite;
     private Animator _mossAnim;
     
+    public int Health { get; set; }
+
+    public void Damage()
+    {
+
+    }
+
    public void Start()
     {
         _mossSprite = GetComponentInChildren<SpriteRenderer>();
         _mossAnim = GetComponentInChildren<Animator>();
+
     }
 
     public override void Update()

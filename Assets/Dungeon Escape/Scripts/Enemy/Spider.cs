@@ -2,12 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spider : Enemy
+public class Spider : Enemy, IDamageable
 {
     private Vector3 _currentTarget;
     private SpriteRenderer _spiderSprite;
     private Animator _spiderAnim;
 
+    public int Health { get; set; }
+
+    public void Damage()
+    {
+
+    }
     public void Start()
     {
         _spiderSprite = GetComponentInChildren<SpriteRenderer>();

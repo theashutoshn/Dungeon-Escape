@@ -2,17 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Skeleton : Enemy
+public class Skeleton : Enemy, IDamageable
 {
 
     private Vector3 _currentTarget;
     private SpriteRenderer _skeletonSprite;
     private Animator _skeletonAnim;
 
+    public int Health { get; set; }
+
+
+    //--------------------------------------------//
     public void Start()
     {
         _skeletonSprite = GetComponentInChildren<SpriteRenderer>();
         _skeletonAnim = GetComponentInChildren<Animator>();
+
+        //assign health property to our enemy health
+        Health = base.health;
+    }
+
+
+    public void Damage()
+    {
+        Debug.Log("Damage");
+        // substract 1 from health
+        Health -= 1;
+        
+        // if health is less then 1
+        if(Health < 1)
+        {
+            // destroy the object+
+            Destroy(this.gameObject);
+        }
+
     }
 
     public override void Update()
