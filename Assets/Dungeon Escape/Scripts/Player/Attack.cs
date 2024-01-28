@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private bool _canDamage = true;
     void Start()
     {
         
@@ -24,7 +24,19 @@ public class Attack : MonoBehaviour
 
         if(hit != null)
         {
-            hit.Damage();
+            if(_canDamage == true)
+            {
+                hit.Damage();
+                _canDamage = false;
+                StartCoroutine(DamageReset());
+            }
+            
         }
+    }
+
+    IEnumerator DamageReset()
+    {
+        yield return new WaitForSeconds(0.5f);
+        _canDamage = true;
     }
 }

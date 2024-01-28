@@ -26,6 +26,7 @@ public class Skeleton : Enemy, IDamageable
     public void Damage()
     {
         Debug.Log("Damage");
+        _skeletonAnim.SetTrigger("Hit");
         // substract 1 from health
         Health -= 1;
         
