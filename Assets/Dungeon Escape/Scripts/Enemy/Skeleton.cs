@@ -28,6 +28,7 @@ public class Skeleton : Enemy, IDamageable
         Debug.Log("Damage");
         _skeletonAnim.SetTrigger("Hit");
         isHit = true;
+        _skeletonAnim.SetBool("InCombat", true);
         // substract 1 from health
         Health -= 1;
         
@@ -79,10 +80,19 @@ public class Skeleton : Enemy, IDamageable
             _skeletonAnim.SetTrigger("Idle");
         }
 
-        if(isHit == false)
+        float distance = Vector3.Distance(transform.position, player.transform.position);
+
+        if (distance > 0.2f)
+        {
+            isHit = false;
+            _skeletonAnim.SetBool("Incombat", false);
+        }
+
+        if (isHit == false)
         {
             transform.position = Vector3.MoveTowards(transform.position, _currentTarget, speed * Time.deltaTime);
         }
         
+
     }
 }
