@@ -27,6 +27,7 @@ public class Skeleton : Enemy, IDamageable
     {
         Debug.Log("Damage");
         _skeletonAnim.SetTrigger("Hit");
+        isHit = true;
         // substract 1 from health
         Health -= 1;
         
@@ -78,6 +79,10 @@ public class Skeleton : Enemy, IDamageable
             _skeletonAnim.SetTrigger("Idle");
         }
 
-        transform.position = Vector3.MoveTowards(transform.position, _currentTarget, speed * Time.deltaTime);
+        if(isHit == false)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, _currentTarget, speed * Time.deltaTime);
+        }
+        
     }
 }

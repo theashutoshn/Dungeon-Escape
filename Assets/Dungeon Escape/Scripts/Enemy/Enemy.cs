@@ -13,6 +13,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField]
     protected Transform PointA, PointB;
 
+    protected bool isHit = false;
 
 
     
