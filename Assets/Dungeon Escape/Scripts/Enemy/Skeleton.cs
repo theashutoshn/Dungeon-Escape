@@ -8,7 +8,7 @@ public class Skeleton : Enemy, IDamageable
     private Vector3 _currentTarget;
     private SpriteRenderer _skeletonSprite;
     private Animator _skeletonAnim;
-
+    private Player _player;
     public int Health { get; set; }
 
 
@@ -17,6 +17,7 @@ public class Skeleton : Enemy, IDamageable
     {
         _skeletonSprite = GetComponentInChildren<SpriteRenderer>();
         _skeletonAnim = GetComponentInChildren<Animator>();
+        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
         //assign health property to our enemy health
         Health = base.health;
@@ -29,6 +30,10 @@ public class Skeleton : Enemy, IDamageable
         _skeletonAnim.SetTrigger("Hit");
         isHit = true;
         _skeletonAnim.SetBool("InCombat", true);
+
+
+        
+
         // substract 1 from health
         Health -= 1;
         
@@ -38,6 +43,7 @@ public class Skeleton : Enemy, IDamageable
             // destroy the object+
             Destroy(this.gameObject);
         }
+       
 
     }
 
@@ -50,9 +56,10 @@ public class Skeleton : Enemy, IDamageable
             return;
         }
 
-
-
         Movement();
+        CheckDistance();
+
+
     }
 
     void Movement()
@@ -80,13 +87,8 @@ public class Skeleton : Enemy, IDamageable
             _skeletonAnim.SetTrigger("Idle");
         }
 
-        float distance = Vector3.Distance(transform.position, player.transform.position);
-
-        if (distance > 0.2f)
-        {
-            isHit = false;
-            _skeletonAnim.SetBool("Incombat", false);
-        }
+        
+        
 
         if (isHit == false)
         {
@@ -95,4 +97,21 @@ public class Skeleton : Enemy, IDamageable
         
 
     }
+
+    private void CheckDistance()
+    {
+        float distance = Vector3.Distance(transform.localPosition, _player.transform.localPosition);
+        Debug.Log("Distance" + distance);
+        if(distance > 1f)
+        {
+            isHit = false;
+            _skeletonAnim.SetBool("InCombat", false);
+        }
+        else
+        {
+            isHit = true;
+            _skeletonAnim.SetBool("InCombat", true);
+        }
+    }
+    
 }

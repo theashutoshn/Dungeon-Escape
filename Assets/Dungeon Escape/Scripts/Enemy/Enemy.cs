@@ -15,24 +15,15 @@ public abstract class Enemy : MonoBehaviour
 
     protected bool isHit = false;
 
-    // varibale to store player distance
-    protected Player player;
-
-    public virtual  void Update()
-    {
-        // check distance between payer and enemy if > 2 then IsHit = false and Incomat = false
-
-        
-
-
-
     
-    }
+
+    public abstract void Update();
+    
 
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        
     }
 
 
