@@ -2,65 +2,80 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MossGiant : Enemy, IDamageable
+public class MossGiant : Enemy
 {
-    
     private Vector3 _currentTarget;
-    private SpriteRenderer _mossSprite;
-    private Animator _mossAnim;
-    
-    public int Health { get; set; }
+    // private bool _switch;
+    private SpriteRenderer _spriteRenderer;
+    private Animator _anim;
 
-    public void Damage()
+    private void Start()
     {
-
-    }
-
-   public void Start()
-    {
-        _mossSprite = GetComponentInChildren<SpriteRenderer>();
-        _mossAnim = GetComponentInChildren<Animator>();
-
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        _anim = GetComponentInChildren<Animator>();
     }
 
     public override void Update()
     {
-        // this is not working, need to solve the error
-        if (_mossAnim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        if (_anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
+            Debug.Log("Animation State");
             return;
         }
-
-        
 
         Movement();
     }
 
-    void Movement()
+    public void Movement()
     {
+        
 
-        //flipping of sprite
-        if (_currentTarget == PointA.position)
-        {
-            _mossSprite.flipX = true;
-        }
-        else if (_currentTarget == PointB.position)
-        {
-            _mossSprite.flipX = false;
-        }
 
-        //movement of sprite
-        if (transform.position == PointA.position)
+        float move = speed * Time.deltaTime;
+
+        if(transform.position == pointA.position)
         {
-            _currentTarget = PointB.position;
-            _mossAnim.SetTrigger("Idle");         
+            _currentTarget = pointB.position;
+            _anim.SetTrigger("Idle");
+            _spriteRenderer.flipX = false;
+            
+
         }
-        else if (transform.position == PointB.position)
+        else if (transform.position == pointB.position)
         {
-            _currentTarget = PointA.position;
-            _mossAnim.SetTrigger("Idle");
+            _currentTarget = pointA.position;
+            _anim.SetTrigger("Idle");
+            _spriteRenderer.flipX = true;
+            
         }
 
-        transform.position = Vector3.MoveTowards(transform.position, _currentTarget, speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, _currentTarget, move);
+
+
+        /* if (transform.position == pointA.position)
+        {
+            Debug.Log("Point A");
+            _switch = false;
+            _spriteRenderer.flipX = false;
+
+        }
+        else if (transform.position == pointB.position)
+        {
+            Debug.Log("Point B");
+            _switch = true;
+            _spriteRenderer.flipX = true;
+
+        }
+
+       if(_switch == false)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, pointB.position, move);
+        }
+        else if (_switch == true) 
+        {
+            transform.position = Vector3.MoveTowards(transform.position, pointA.position, move);
+
+        }
+        */
     }
 }

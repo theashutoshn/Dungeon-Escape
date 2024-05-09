@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
@@ -11,25 +12,10 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField]
     protected int gems;
     [SerializeField]
-    protected Transform PointA, PointB;
+    protected Transform pointA, pointB;
 
-    protected bool isHit = false;
-
-    
+   
 
     public abstract void Update();
-    
-
-
-    private void Start()
-    {
-        
-    }
-
-
-    
-
+  
 }
-
-
-
