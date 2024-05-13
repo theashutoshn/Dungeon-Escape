@@ -1,18 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Spider : Enemy
 {
-    public void Start()
+    // Use for Initialization
+    public override void Init()
     {
-        
-    }
-
-    
-
-    public override void Update()
-    {
-        Debug.Log("Spider Unique Update");
+        base.Init();
     }
 }

@@ -2,57 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MossGiant : Enemy
+public class MossGiant : Enemy, IDamageable
 {
-    private Vector3 _currentTarget;
-    // private bool _switch;
-    private SpriteRenderer _spriteRenderer;
-    private Animator _anim;
+    public int Health { get; set; }
 
-    private void Start()
+
+    // Use for initilization
+    public override void Init()
     {
-        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        _anim = GetComponentInChildren<Animator>();
-    }
-
-    public override void Update()
-    {
-        if (_anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
-        {
-            Debug.Log("Animation State");
-            return;
-        }
-
-        Movement();
-    }
-
-    public void Movement()
-    {
+        base.Init();
         
+    }
+
+    public void Damage()
+    {
+
+    }
 
 
-        float move = speed * Time.deltaTime;
-
-        if(transform.position == pointA.position)
-        {
-            _currentTarget = pointB.position;
-            _anim.SetTrigger("Idle");
-            _spriteRenderer.flipX = false;
-            
-
-        }
-        else if (transform.position == pointB.position)
-        {
-            _currentTarget = pointA.position;
-            _anim.SetTrigger("Idle");
-            _spriteRenderer.flipX = true;
-            
-        }
-
-        transform.position = Vector3.MoveTowards(transform.position, _currentTarget, move);
 
 
-        /* if (transform.position == pointA.position)
+
+
+
+
+
+
+    // private bool _switch;
+
+    /* if (transform.position == pointA.position)
         {
             Debug.Log("Point A");
             _switch = false;
@@ -77,5 +55,18 @@ public class MossGiant : Enemy
 
         }
         */
-    }
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
