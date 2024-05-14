@@ -18,10 +18,20 @@ public abstract class Enemy : MonoBehaviour
     protected Animator animator;
     protected SpriteRenderer spriteRenderer;
 
+
+    protected bool isHit = false;
+
+    protected Player player;
+    protected Vector3 playerPos;
+
+
+
+
     public virtual void Init()
     {
         animator = GetComponentInChildren<Animator>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
     public void Start()
@@ -40,6 +50,8 @@ public abstract class Enemy : MonoBehaviour
         }
 
         Movement();
+
+        playerPos = player.transform.position;
     }
 
     public virtual void Movement()
@@ -62,7 +74,16 @@ public abstract class Enemy : MonoBehaviour
 
         }
 
-        transform.position = Vector3.MoveTowards(transform.position, currentTarget, move);
+        if (isHit == false)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, currentTarget, move);
+        }
+        
+        if (Vector3.Distance(transform.position, playerPos) > 2.0f)
+        {
+            isHit = false;
+           animator.SetBool("InCombat", false);
+        }
 
     }
 
