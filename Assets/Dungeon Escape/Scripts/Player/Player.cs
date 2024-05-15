@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDamageable
 {
     private Rigidbody2D _rb2d;
     private float _jumpForce = 5f;
@@ -16,6 +16,13 @@ public class Player : MonoBehaviour
     private PlayerAnimation _playerAnim;
     private SpriteRenderer _playerSprite;
     private SpriteRenderer _swordAnimSprite;
+
+    public int Health 
+    {
+        get; set;
+    }
+
+
 
     void Start()
     {
@@ -116,5 +123,10 @@ public class Player : MonoBehaviour
             _playerAnim.PlayerAttack();
 
         }
+    }
+
+    public void Damage()
+    {
+        Debug.Log("Player Damage");
     }
 }

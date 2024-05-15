@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Skeleton : Enemy, IDamageable
 
@@ -11,6 +12,23 @@ public class Skeleton : Enemy, IDamageable
         base.Init();
         Health = base.health;
     }
+
+    public override void Movement()
+    {
+        base.Movement();
+
+        Vector3 Direction = player.transform.position - transform.position;
+
+        if(Direction.x > 0 && animator.GetBool("InCombat") == true)
+        {
+            spriteRenderer.flipX = false;
+        }
+        else if(Direction.x < 0 && animator.GetBool("InCombat") == true)
+        {
+            spriteRenderer.flipX = true;
+        }
+    }
+
 
     public void Damage()
     {
