@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour, IDamageable
 {
     private Rigidbody2D _rb2d;
-    private float _jumpForce = 5f;
+    private float _jumpForce = 7f;
     [SerializeField]
     private bool _grounded = false;
     [SerializeField]

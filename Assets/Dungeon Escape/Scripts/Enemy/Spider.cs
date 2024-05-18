@@ -6,6 +6,8 @@ using UnityEngine.UIElements;
 public class Spider : Enemy, IDamageable
 {
 
+    public GameObject acidPrefab;
+
     public int Health {  get; set; }
     // Use for Initialization
     public override void Init()
@@ -17,5 +19,15 @@ public class Spider : Enemy, IDamageable
     public void Damage()
     {
         
+    }
+
+    public override void Movement()
+    {
+       
+    }
+
+    public void Attack()
+    {
+        Instantiate(acidPrefab, transform.position, Quaternion.identity);
     }
 }
