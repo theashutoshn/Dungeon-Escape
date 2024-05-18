@@ -15,9 +15,32 @@ public class MossGiant : Enemy, IDamageable
         
     }
 
+    public override void Movement()
+    {
+        base.Movement();
+
+        Vector3 Direction = player.transform.position - transform.position;
+
+        if (Direction.x > 0 && animator.GetBool("InCombat") == true)
+        {
+            spriteRenderer.flipX = false;
+        }
+        else if (Direction.x < 0 && animator.GetBool("InCombat") == true)
+        {
+            spriteRenderer.flipX = true;
+        }
+    }
     public void Damage()
     {
-
+        Health -= 1;
+        animator.SetTrigger("Hit");
+        isHit = true;
+        animator.SetBool("InCombat", true);
+        if (Health < 1)
+        {
+            Destroy(this.gameObject);
+        }
+        
     }
 
 
