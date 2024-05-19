@@ -4,12 +4,29 @@ using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
-    public GameObject shopUI;
+    public GameObject shopPanel;
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag == "Player")
         {
-            shopUI.SetActive(true);
+            Player player = other.GetComponent<Player>();
+
+            if(player != null)
+            {
+                UIManager.Instance.OpenShop(player.diamond);
+            }
+            
+
+            shopPanel.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+
+        if (other.tag == "Player")
+        {
+            shopPanel.SetActive(false);
         }
     }
 }
