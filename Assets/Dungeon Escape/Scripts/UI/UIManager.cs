@@ -21,7 +21,7 @@ public class UIManager : MonoBehaviour
     }
 
     public TextMeshProUGUI playerGemCountText;
-
+    public Image selectionImage;
     public void OpenShop(int gemCount)
     {
         playerGemCountText.text = "" + gemCount + "G";
