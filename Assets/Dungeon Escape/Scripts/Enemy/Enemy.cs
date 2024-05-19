@@ -20,6 +20,7 @@ public abstract class Enemy : MonoBehaviour
 
 
     protected bool isHit = false;
+    protected bool isDead = false;
 
     protected Player player;
     protected Vector3 playerPos;
@@ -49,7 +50,11 @@ public abstract class Enemy : MonoBehaviour
             return;
         }
 
-        Movement();
+        if(isDead == false)
+        {
+            Movement();
+        }
+        
 
         playerPos = player.transform.position;
     }

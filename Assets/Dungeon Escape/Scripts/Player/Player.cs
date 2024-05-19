@@ -27,7 +27,7 @@ public class Player : MonoBehaviour, IDamageable
     void Start()
     {
         _rb2d = GetComponent<Rigidbody2D>();
-        _playerAnim = GetComponent<PlayerAnimation>();
+        _playerAnim = GetComponentInChildren<PlayerAnimation>();
         _playerSprite = GetComponentInChildren<SpriteRenderer>();
         _swordAnimSprite = transform.GetChild(1).GetComponent<SpriteRenderer>();
     }
@@ -127,6 +127,7 @@ public class Player : MonoBehaviour, IDamageable
 
     public void Damage()
     {
-        Debug.Log("Player Damage");
+        
+        
     }
 }
