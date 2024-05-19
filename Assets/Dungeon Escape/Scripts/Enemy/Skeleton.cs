@@ -22,6 +22,10 @@ public class Skeleton : Enemy, IDamageable
 
     public void Damage()
     {
+        if (isDead == true)
+        {
+            return;
+        }
         Debug.Log("Damage()");
         Health -= 1;
         animator.SetTrigger("Hit");
@@ -32,6 +36,12 @@ public class Skeleton : Enemy, IDamageable
             isDead = true;
             animator.SetTrigger("Death");
             //Destroy(this.gameObject);
+
+            //spawn the diamond
+            GameObject diamond = Instantiate(diamondsPrefab, transform.position, Quaternion.identity) as GameObject;
+
+            // change the value of gems value accorfing to moss giant
+            diamond.GetComponent<Diamond>().gems = base.gems;
         }
     }
 

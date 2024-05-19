@@ -22,6 +22,11 @@ public class Spider : Enemy, IDamageable
     }
     public void Damage()
     {
+        if (isDead == true)
+        {
+            return;
+        }
+
 
         Health -= 1;
         if(Health < 1)
@@ -29,6 +34,12 @@ public class Spider : Enemy, IDamageable
             isDead = true;
             animator.SetTrigger("Death");
             //Destroy(this.gameObject);
+
+            //spawn the diamond
+            GameObject diamond = Instantiate(diamondsPrefab, transform.position, Quaternion.identity) as GameObject;
+
+            // change the value of gems value accorfing to moss giant
+            diamond.GetComponent<Diamond>().gems = base.gems;
         }
     }
 

@@ -25,6 +25,9 @@ public abstract class Enemy : MonoBehaviour
     protected Player player;
     protected Vector3 playerPos;
 
+    [SerializeField]
+    protected GameObject diamondsPrefab;
+
 
 
 
