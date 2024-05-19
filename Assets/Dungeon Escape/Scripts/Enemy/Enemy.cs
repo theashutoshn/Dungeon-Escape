@@ -55,7 +55,6 @@ public abstract class Enemy : MonoBehaviour
             Movement();
         }
         
-
         playerPos = player.transform.position;
     }
 

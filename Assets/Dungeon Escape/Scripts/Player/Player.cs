@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour, IDamageable
 {
+    public int diamond;
+
+
     private Rigidbody2D _rb2d;
     private float _jumpForce = 7f;
     [SerializeField]
