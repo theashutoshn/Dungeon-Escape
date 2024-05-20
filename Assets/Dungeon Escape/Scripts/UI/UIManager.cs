@@ -23,6 +23,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI playerGemCountText;
     public Image selectionImage;
     public TextMeshProUGUI gemCountText;
+    public Image[] healthBar;
 
     private void Awake()
     {
@@ -45,4 +46,21 @@ public class UIManager : MonoBehaviour
         gemCountText.text = "" + count;
     }
 
+    public void UpdateLives(int livesRemaining)
+    {
+        //loop thorught lives
+        //i==livesRemaining
+        for(int i = 0; i <= livesRemaining; i++)
+        {
+            //do nothing till we hit max
+            if(i==livesRemaining)
+            {
+                //hide this one
+                healthBar[i].enabled = false;
+            }
+        }
+
+        //hide that one
+
+    }
 }

@@ -33,6 +33,7 @@ public class Player : MonoBehaviour, IDamageable
         _playerAnim = GetComponentInChildren<PlayerAnimation>();
         _playerSprite = GetComponentInChildren<SpriteRenderer>();
         _swordAnimSprite = transform.GetChild(1).GetComponent<SpriteRenderer>();
+        Health = 4;
     }
 
     // Update is called once per frame
@@ -130,8 +131,24 @@ public class Player : MonoBehaviour, IDamageable
 
     public void Damage()
     {
+
+        if(Health < 1)
+        {
+            return;
+        }
+        //remove 1 health
+        Health -= 1;
+        //update UI display
+        UIManager.Instance.UpdateLives(Health);
+
+        //check for dead
+        if (Health == 0)
+        {
+            //play death animation
+            _playerAnim.DeathAnimation();
+        }
         
-        
+
     }
 
     public void AddGem(int amount)
