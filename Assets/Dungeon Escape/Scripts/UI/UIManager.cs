@@ -22,6 +22,13 @@ public class UIManager : MonoBehaviour
 
     public TextMeshProUGUI playerGemCountText;
     public Image selectionImage;
+    public TextMeshProUGUI gemCountText;
+
+    private void Awake()
+    {
+        _instance = this;
+    }
+
     public void OpenShop(int gemCount)
     {
         playerGemCountText.text = "" + gemCount + "G";
@@ -32,10 +39,10 @@ public class UIManager : MonoBehaviour
     {
         selectionImage.rectTransform.anchoredPosition = new Vector2(selectionImage.rectTransform.anchoredPosition.x, yPos);
     }
-    private void Awake()
+    
+    public void UpdateGemCount(int count)
     {
-        _instance = this;
+        gemCountText.text = "" + count;
     }
-
 
 }

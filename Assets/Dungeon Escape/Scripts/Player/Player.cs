@@ -133,4 +133,10 @@ public class Player : MonoBehaviour, IDamageable
         
         
     }
+
+    public void AddGem(int amount)
+    {
+        diamond += amount;
+        UIManager.Instance.UpdateGemCount(diamond);
+    }
 }
