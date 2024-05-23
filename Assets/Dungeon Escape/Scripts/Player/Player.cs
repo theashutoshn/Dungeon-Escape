@@ -20,6 +20,7 @@ public class Player : MonoBehaviour, IDamageable
     private SpriteRenderer _playerSprite;
     private SpriteRenderer _swordAnimSprite;
 
+
     public int Health 
     {
         get; set;
@@ -48,6 +49,8 @@ public class Player : MonoBehaviour, IDamageable
    void Movement()
     {
         float horizontalInput = Input.GetAxisRaw("Horizontal");
+        
+
 
         Flip(horizontalInput);
 
